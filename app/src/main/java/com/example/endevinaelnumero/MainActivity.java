@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,22 +20,29 @@ public class MainActivity extends AppCompatActivity {
 
         final Button button = findViewById(R.id.button);
         final EditText editText = findViewById(R.id.editTextNumber);
+        Random random = new Random();
+        int num = random.nextInt(100) + 1;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int resp = Integer.parseInt(String.valueOf(editText.getText()));
                 int duration = Toast.LENGTH_SHORT;
-                int num = 10;
+
+
+                TextView tw = findViewById(R.id.textView);
+                tw.setText(Integer.toString(num));
 
                 Toast toast = Toast.makeText(getApplicationContext(),"Default",duration);
                 if (resp == num) {
                     toast = Toast.makeText(getApplicationContext(),"Correcte!",duration);
-                } if (resp > num) {
-                    toast = Toast.makeText(getApplicationContext(),"El respero es menor",duration);
-                } if (resp < num) {
+                } else if (resp >= 101 || resp <= 0) {
+                    toast = Toast.makeText(getApplicationContext(),"Error, el numero ha d'estar entre 1-100",duration);
+                } else if (resp < num) {
                     toast = Toast.makeText(getApplicationContext(),"El numero es major",duration);
+                } else if (resp > num) {
+                    toast = Toast.makeText(getApplicationContext(), "El numero es menor", duration);
                 } else {
-                    toast = Toast.makeText(getApplicationContext(), "Error", duration);
+                    toast = Toast.makeText(getApplicationContext(),"Error",duration);
                 }
                 toast.show();
             }
