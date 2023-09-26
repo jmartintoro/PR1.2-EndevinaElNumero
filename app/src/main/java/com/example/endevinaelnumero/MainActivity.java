@@ -1,7 +1,9 @@
 package com.example.endevinaelnumero;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +50,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.buttonDialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                builder.setTitle("¡¡Felicitats!!");
+                builder.setMessage("Has encertat el numero, torna a jugar!");
+
+                builder.setPositiveButton("Perfecto", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                final AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                });
+            }
+        });
 
 
     }
